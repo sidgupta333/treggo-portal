@@ -1,0 +1,243 @@
+<div class="row">
+    <div class="col-6">
+        <button (click)="addDIshModalOpen()" data-toggle="modal" data-target="#dishesModal" data-backdrop="static" data-keyboard="false" class="btn btn-primary btn-round animation-on-hover">Add New Dish</button>
+    </div>
+</div>
+<br><br>
+<div class="row">
+    <div *ngFor="let category of dishesHierarchy; let i = index" class="col-6">
+        <div class="card">
+            <div class="card-header dish-header">
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h4 class="card-title"> {{category.category_name | uppercase}} </h4>
+                    </div>
+
+                    <div class="col-lg-6">
+
+                        <span (click)="deleteCategory(category.category_id)" style="margin-left: 20px; cursor: pointer;" class="pull-right"> <i class="tim-icons icon-simple-remove" data-toggle="tooltip" title="Remove Category"></i>
+                        </span>
+
+                        <span class="pull-right" data-toggle="modal" data-target="#categoryModal" data-backdrop="static" data-keyboard="false" (click)="updateCategory(category)" style="cursor: pointer;"> <i class="tim-icons icon-pencil" data-toggle="tooltip" title="Edit Category"></i>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-body dish-body">
+
+                <table class="table tablesorter">
+                    <thead class=" text-primary">
+                        <tr>
+                            <th>
+                                S No
+                            </th>
+                            <th>
+                                Dish Name
+                            </th>
+                            <th class="text-center">
+                                Base Price
+                            </th>
+                            <th class="text-center">
+                                Available
+                            </th>
+                            <th class="text-center">
+                                Actions
+                            </th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let dish of category.dishes  | paginate: {itemsPerPage: 5, currentPage: p}; let i = index">
+
+                            <td>
+                                {{i + 1}}
+                            </td>
+
+                            <td>
+                                {{dish.dish_name}}
+                            </td>
+                            <td class="text-center">
+                                ₹ {{dish.base_price}}
+                            </td>
+                            <td class="text-center">
+                                <label class="switch">
+                                    <input type="checkbox" (click)="toggleChanged(dish)" [checked]="dish.is_available == 'Y' ? true : false">
+                                    <span class="slider round"></span>
+                                    </label>
+                            </td>
+
+                            <td class="text-center">
+                                <span (click)="updateDishClicked(category,dish)" data-toggle="modal" data-target="#dishesUpdateModal" data-backdrop="static" data-keyboard="false">
+                                      
+                                      <i class="tim-icons icon-pencil" style="cursor: pointer;" data-toggle="tooltip" title="Edit Dish"></i></span> &nbsp;
+                                <span>
+                                    <i (click)="deleteDish(dish)" style="cursor: pointer;" data-toggle="tooltip" title="Remove Dish" class="tim-icons icon-simple-remove"></i>
+                                 </span>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card">
+            <div data-toggle="modal" data-target="#categoryModal" data-backdrop="static" data-keyboard="false" (click)="openCategoryModal()" style="cursor: pointer; height: 460px;" class="flex-container">
+                <i style="font-size: 48px" class="tim-icons icon-simple-add"></i>
+                <br>
+                <span> ADD NEW CATEGORY  </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- -------------------------------Dishes Modal ------------------------------------->
+<!-- Save Modal -->
+<div class="modal fade model-config" id="dishesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Add Dish</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="tim-icons icon-simple-remove"></i>
+        </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="dishForm">
+
+                    <div class="form-group">
+                        <label for="dishName">Dish Name</label>
+                        <input id="dishName" type="text" formControlName="dishName" class="form-control modal-input" placeholder="Enter Dish Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dishPrice">Dish Price</label>
+                        <input id="dishPrice" type="number" formControlName="dishPrice" class="form-control modal-input" placeholder="0.00">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Select Dishes Category</label>
+                        <select class="form-control modal-input" formControlName="dishCategory" id="category">
+                              <option *ngFor="let category of dishesHierarchy; let i = index" [value]="dishesHierarchy[i].category_id">    
+                                    {{ dishesHierarchy[i].category_name }}        
+                              </option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label class="upload-custom" for="uploadImage">Click here to Upload Image</label>
+                        <input (change)="onSelectedFile($event)" type="file" name="file" accept="image/png,image/jpeg" />
+                        <span *ngIf="dishForm.value.uploadImage && !fileError"> File Selected: {{dishForm.value.uploadImage.name}} </span>
+                        <br>
+                        <small *ngIf="fileError" style="color: red;"> Please upload JPG and PNG images only.</small>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button (click)="addDish()" [disabled]="!dishForm.valid || fileError" type="submit" class="btn btn-primary" data-dismiss="modal">SAVE</button> &nbsp;
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--------------- Update modal -------------------->
+
+<div class="modal fade model-config" id="dishesUpdateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Update Dish</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="tim-icons icon-simple-remove"></i>
+        </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="dishForm2">
+
+                    <div class="form-group">
+                        <label for="dishName">Dish Name</label>
+                        <input id="dishName" type="text" formControlName="dishName" class="form-control modal-input" placeholder="Enter Dish Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dishPrice">Dish Price</label>
+                        <input id="dishPrice" type="number" formControlName="dishPrice" class="form-control modal-input" placeholder="0.00">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Select Dishes Category</label>
+                        <select class="form-control modal-input" formControlName="dishCategory" id="category">
+                              <option *ngFor="let category of dishesHierarchy; let i = index" [value]="dishesHierarchy[i].category_id">    
+                                    {{ dishesHierarchy[i].category_name }}        
+                              </option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label class="upload-custom" for="uploadImage">Click here to Upload Image</label>
+                        <input (change)="onSelectedFile2($event)" type="file" name="file" accept="image/png,image/jpeg" />
+                        <span *ngIf="dishForm2.value.uploadImage.name && !fileError"> File Selected: {{dishForm2.value.uploadImage.name}} </span>
+                        <br>
+                        <small *ngIf="fileError" style="color: red;"> Please upload JPG and PNG images only.</small>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button (click)="updateDishDetails()" [disabled]="!dishForm2.valid || fileError" type="submit" class="btn btn-primary" data-dismiss="modal">UPDATE</button> &nbsp;
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!----------------------------------- Create category modal------------------------- -->
+<!-- Save Modal -->
+<div class="modal fade model-config" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Add / Update Dish Category</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="tim-icons icon-simple-remove"></i>
+        </button>
+            </div>
+            <div class="modal-body">
+
+                <form [formGroup]="categoryForm">
+
+                    <div class="form-group">
+                        <label for="dishName">Dish Category Name</label>
+                        <input id="dishName" type="text" formControlName="categoryName" class="form-control modal-input" placeholder="Enter Category Name">
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+
+                <button (click)="saveDishCategory()" [disabled]="!categoryForm.valid" type="submit" class="btn btn-primary" data-dismiss="modal">SAVE</button> &nbsp;
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
