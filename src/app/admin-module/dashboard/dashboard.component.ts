@@ -17,11 +17,11 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
 
     //Default selected settings
-    for(let i = 1; i < 8; i++) {
+    for (let i = 1; i < 8; i++) {
       this.activeClasses.push(false);
     }
 
-    if(sessionStorage.getItem('submenu')) {
+    if (sessionStorage.getItem('submenu')) {
       this.navigateSubMenu(sessionStorage.getItem('submenu'));
     }
     else {
@@ -33,37 +33,50 @@ export class DashboardComponent implements OnInit {
 
   //Sub menu navigation
   navigateSubMenu(subMenu: string) {
-    if(subMenu == 'overview') {
+    if (subMenu == 'overview') {
       sessionStorage.setItem('submenu', 'overview');
       this.defaultClasses();
       this.activeClasses[0] = true;
-      this.router.navigate(['dashboard','overview']);
+      this.router.navigate(['dashboard', 'overview']);
     }
 
-    else if(subMenu == 'users') {
+    else if (subMenu == 'users') {
       sessionStorage.setItem('submenu', 'users');
       this.defaultClasses();
       this.activeClasses[1] = true;
-      this.router.navigate(['dashboard','users']);
+      this.router.navigate(['dashboard', 'users']);
     }
 
-    else if(subMenu == 'dishes') {
+    else if (subMenu == 'dishes') {
       sessionStorage.setItem('submenu', 'dishes');
       this.defaultClasses();
       this.activeClasses[2] = true;
-      this.router.navigate(['dashboard','dishes']);
+      this.router.navigate(['dashboard', 'dishes']);
     }
-    else if(subMenu == 'tables') {
+    else if (subMenu == 'tables') {
       sessionStorage.setItem('submenu', 'tables');
       this.defaultClasses();
       this.activeClasses[3] = true;
-      this.router.navigate(['dashboard','tables']);
+      this.router.navigate(['dashboard', 'tables']);
     }
-  } 
+    else if (subMenu == 'banners') {
+      sessionStorage.setItem('submenu', 'banners');
+      this.defaultClasses();
+      this.activeClasses[4] = true;
+      this.router.navigate(['dashboard', 'banners']);
+    }
+
+    else if (subMenu == 'coupons') {
+      sessionStorage.setItem('submenu', 'coupons');
+      this.defaultClasses();
+      this.activeClasses[5] = true;
+      this.router.navigate(['dashboard', 'coupons']);
+    }
+  }
 
   // Remove all active options
   defaultClasses() {
-    for(let i = 0; i < 8; i++) {
+    for (let i = 0; i < 8; i++) {
       this.activeClasses[i] = false;
     }
   }
@@ -76,7 +89,7 @@ export class DashboardComponent implements OnInit {
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('name');
     this.router.navigate(['']);
-    
+
   }
 
 }

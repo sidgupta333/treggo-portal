@@ -25,6 +25,14 @@ export class RestService {
   GET_ALL_TABLES: string = "/tables/getAll";
   CREATE_TABLE: string = "/tables/create";
   DELETE_TABLE: string = "/tables/delete/";
+  GET_ALL_BANNERS: string = "/banners/getAll";
+  SAVE_BANNER: string = "/banners/create";
+  DELETE_BANNER: string = "/banners/delete/";
+  VIEW_IMAGE: string = "/images/download/banner/";
+  UPDATE_BANNER_STATUS: string = "/banners/updateStatus";
+  GET_ALL_COUPONS = "/coupons/getAll";
+  CREATE_COUPON = "/coupons/create";
+  DELETE_COUPON = "/coupons/delete/";
 
 
   constructor(private http: HttpClient) { }
@@ -103,5 +111,45 @@ export class RestService {
   public deleteTable(tableId) {
     let url = this.SERVER.concat(this.DELETE_TABLE, tableId);
     return this.http.delete(url);
+  }
+
+  public addBanner(dto: any) {
+    let url = this.SERVER.concat(this.SAVE_BANNER);
+    return this.http.post(url, dto);
+  }
+
+  public getBanners() {
+    let url = this.SERVER.concat(this.GET_ALL_BANNERS);
+    return this.http.get(url);
+  }
+
+  public deleteBanner(id: any) {
+    let url = this.SERVER.concat(this.DELETE_BANNER, id);
+    return this.http.delete(url);
+  }
+
+  public getImageUrl(id: any): string {
+    let url: string = this.SERVER.concat(this.VIEW_IMAGE, id);
+    return url;
+  }
+
+  public updateBannerStatus(dto: any) {
+    let url = this.SERVER.concat(this.UPDATE_BANNER_STATUS);
+    return this.http.post(url, dto);
+  }
+
+  public createCoupon(dto: any) {
+    let url = this.SERVER.concat(this.CREATE_COUPON);
+    return this.http.post(url, dto);
+  }
+
+  public getAllCoupons() {
+    let url = this.SERVER.concat(this.GET_ALL_COUPONS);
+    return this.http.get(url);
+  }
+
+  public deleteCoupon(id: any) {
+    let url = this.SERVER.concat(this.DELETE_COUPON, id);
+     return this.http.delete(url);
   }
 }

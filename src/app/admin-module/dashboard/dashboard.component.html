@@ -15,7 +15,7 @@
                 </li>
                 <li [ngClass]="{active: activeClasses[1]}">
                     <a (click)="navigateSubMenu('users')">
-                        <i class="tim-icons icon-user-run"></i>
+                        <i class="tim-icons icon-single-02"></i>
                         <p>Users Management</p>
                     </a>
                 </li>
@@ -32,79 +32,68 @@
                     </a>
                 </li>
                 <li [ngClass]="{active: activeClasses[4]}">
-                    <a href="./user.html">
-                        <i class="tim-icons icon-single-02"></i>
-                        <p>User Profile</p>
+                    <a (click)="navigateSubMenu('banners')">
+                        <i class="tim-icons icon-puzzle-10"></i>
+                        <p>Banners</p>
                     </a>
                 </li>
                 <li [ngClass]="{active: activeClasses[5]}">
-                    <a href="./tables.html">
-                        <i class="tim-icons icon-puzzle-10"></i>
-                        <p>Table List</p>
+                    <a (click)="navigateSubMenu('coupons')">
+                        <i class=" tim-icons icon-world "></i>
+                        <p>Coupons</p>
                     </a>
                 </li>
-                <li [ngClass]="{active: activeClasses[6]}">
-                    <a href="./typography.html">
-                        <i class="tim-icons icon-align-center"></i>
-                        <p>Typography</p>
-                    </a>
-                </li>
-                <li [ngClass]="{active: activeClasses[7]}">
-                    <a href="./rtl.html">
-                        <i class="tim-icons icon-world"></i>
-                        <p>RTL Support</p>
-                    </a>
-                </li>
+
 
             </ul>
         </div>
     </div>
-    <div class="main-panel">
+    <div class="main-panel ">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
-            <div class="container-fluid">
-                <div class="navbar-wrapper">
-                    <div class="navbar-toggle d-inline">
-                        <button type="button" class="navbar-toggler">
-                                          <span class="navbar-toggler-bar bar1"></span>
-                                          <span class="navbar-toggler-bar bar2"></span>
-                                          <span class="navbar-toggler-bar bar3"></span>
+        <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent ">
+            <div class="container-fluid ">
+                <div class="navbar-wrapper ">
+                    <div class="navbar-toggle d-inline ">
+                        <button type="button " class="navbar-toggler ">
+                                          <span class="navbar-toggler-bar bar1 "></span>
+                                          <span class="navbar-toggler-bar bar2 "></span>
+                                          <span class="navbar-toggler-bar bar3 "></span>
                                     </button>
                     </div>
-                    <a class="navbar-brand" href="javascript:void(0)">ADMIN AREA</a>
+                    <a class="navbar-brand " href="javascript:void(0) ">ADMIN AREA</a>
                 </div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
-                              <span class="navbar-toggler-bar navbar-kebab"></span>
-                              <span class="navbar-toggler-bar navbar-kebab"></span>
-                              <span class="navbar-toggler-bar navbar-kebab"></span>
+                <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navigation " aria-expanded="false " aria-label="Toggle navigation ">
+                              <span class="navbar-toggler-bar navbar-kebab "></span>
+                              <span class="navbar-toggler-bar navbar-kebab "></span>
+                              <span class="navbar-toggler-bar navbar-kebab "></span>
                         </button>
-                <div class="collapse navbar-collapse" id="navigation">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="dropdown nav-item date-time">
+                <div class="collapse navbar-collapse " id="navigation ">
+                    <ul class="navbar-nav ml-auto ">
+                        <li class="dropdown nav-item date-time ">
                             <span> Logged in at: {{loggedInTime}}</span>
                         </li>
-                        <li class="dropdown nav-item">
-                            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                <div class="photo">
-                                    <img src="../assets/img/anime3.png" alt="Profile Photo">
+                        <li class="dropdown nav-item ">
+                            <a href="# " class="dropdown-toggle nav-link " data-toggle="dropdown ">
+                                <div class="photo ">
+                                    <img src="../assets/img/anime3.png " alt="Profile Photo ">
                                 </div>
-                                <b class="caret d-none d-lg-block d-xl-block"></b>
-                                <p class="d-lg-none">
+                                <b class="caret d-none d-lg-block d-xl-block "></b>
+                                <p class="d-lg-none ">
                                     Log out
                                 </p>
                             </a>
-                            <ul class="dropdown-menu dropdown-navbar">
-                                <li class="logout nav-link"><a style="color: black;" (click)="logout()" class="nav-item dropdown-item">Log out</a></li>
+                            <ul class="dropdown-menu dropdown-navbar ">
+                                <li class="logout nav-link "><a style="color: black; " (click)="logout() " class="nav-item dropdown-item ">Log out</a></li>
                             </ul>
                         </li>
-                        <li class="separator d-lg-none"></li>
+                        <li class="separator d-lg-none "></li>
                     </ul>
                 </div>
             </div>
         </nav>
 
         <!-- End Navbar -->
-        <div class="content">
+        <div class="content ">
             <router-outlet></router-outlet>
         </div>
     </div>
@@ -163,7 +152,7 @@
                 }
             });
 
-            $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function() {
+            $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch ", function() {
                 var $btn = $(this);
 
                 if (sidebar_mini_active == true) {
@@ -187,7 +176,7 @@
                 }, 1000);
             });
 
-            $('.switch-change-color input').on("switchChange.bootstrapSwitch", function() {
+            $('.switch-change-color input').on("switchChange.bootstrapSwitch ", function() {
                 var $btn = $(this);
 
                 if (white_color == true) {
@@ -229,11 +218,11 @@
 
     });
 </script>
-<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+<script src="https://cdn.trackjs.com/agent/v3/latest/t.js "></script>
 <script>
     window.TrackJS &&
         TrackJS.install({
-            token: "ee6fab19c5a04ac1a32a645abde4613a",
-            application: "black-dashboard-free"
+            token: "ee6fab19c5a04ac1a32a645abde4613a ",
+            application: "black-dashboard-free "
         });
 </script>
