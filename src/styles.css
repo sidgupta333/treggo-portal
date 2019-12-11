@@ -138,3 +138,23 @@ input:checked+.slider:before {
     border: solid 2px rgb(70, 69, 69);
     ;
 }
+
+.green-text {
+    color: rgb(33, 207, 33);
+}
+
+.red-text {
+    color: rgb(255, 61, 61);
+}
+
+.blue-text {
+    color: rgb(61, 193, 245);
+}
+
+.yellow-text {
+    color: rgb(255, 255, 43);
+}
+
+.small-text {
+    font-size: smaller;
+}

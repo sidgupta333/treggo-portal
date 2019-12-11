@@ -33,6 +33,9 @@ export class RestService {
   GET_ALL_COUPONS = "/coupons/getAll";
   CREATE_COUPON = "/coupons/create";
   DELETE_COUPON = "/coupons/delete/";
+  GET_DRILLDOWN = "/subOrders/drillDown";
+  UPDATE_SUB_ORDER = "/subOrders/updateStatus";
+  UPDATE_ORDER = "/orders/updateStatus";
 
 
   constructor(private http: HttpClient) { }
@@ -151,5 +154,20 @@ export class RestService {
   public deleteCoupon(id: any) {
     let url = this.SERVER.concat(this.DELETE_COUPON, id);
      return this.http.delete(url);
+  }
+
+  public getDrilldown() {
+    let url = this.SERVER.concat(this.GET_DRILLDOWN);
+    return this.http.get(url);
+  }
+
+  public updateSubOrder(dto: any) {
+    let url = this.SERVER.concat(this.UPDATE_SUB_ORDER);
+    return this.http.post(url, dto);
+  }
+
+  public updateOrder(dto: any) {
+    let url = this.SERVER.concat(this.UPDATE_ORDER);
+    return this.http.post(url, dto);
   }
 }
