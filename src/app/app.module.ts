@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ChartsModule } from 'ng2-charts';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,13 +19,15 @@ import { RestService } from './services/rest.service';
 import { UtilsService } from './services/utils.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { Ng2OrderModule } from 'ng2-order-pipe';
+import { KitchenComponent } from './kitchen/kitchen.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoadingComponent,
-    LoginComponent
+    LoginComponent,
+    KitchenComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
     FormsModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
-    Ng2OrderModule
+    Ng2OrderModule,
+    ChartsModule
 
   ],
   providers: [

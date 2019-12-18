@@ -10,6 +10,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { OrderModule } from 'ngx-order-pipe';
 import { MyDatePickerModule } from 'mydatepicker';
+import { ChartsModule } from 'ng2-charts';
+
+
 import { DishesComponent } from './dashboard/dishes/dishes.component';
 import { TablesComponent } from './dashboard/tables/tables.component';
 import { BannersComponent } from './dashboard/banners/banners.component';
@@ -39,7 +42,8 @@ const routes: Routes = [
     Ng2OrderModule,
     OrderModule,
     RouterModule.forChild(routes),
-    MyDatePickerModule
+    MyDatePickerModule,
+    ChartsModule
   ]
 })
 export class AdminModuleModule { }

@@ -52,7 +52,13 @@ loginForm: FormGroup;
         this.utils.setLoggedStatus(true);
 
         // Navigate to dashboard
-        this.router.navigate(["dashboard"]);
+        if(res.is_admin == 'Y') {
+          this.router.navigate(["dashboard"]);
+        }
+
+        else {
+          this.router.navigate(['kitchen']);
+        }
 
     },
     err => {
