@@ -13,12 +13,13 @@
                         <p>Overview</p>
                     </a>
                 </li>
-                <li [ngClass]="{active: activeClasses[1]}">
-                    <a (click)="navigateSubMenu('users')">
-                        <i class="tim-icons icon-single-02"></i>
-                        <p>Users Management</p>
+                <li [ngClass]="{active: activeClasses[6]}">
+                    <a (click)="navigateSubMenu('sales')">
+                        <i class=" tim-icons icon-wallet-43 "></i>
+                        <p>Sales</p>
                     </a>
                 </li>
+
                 <li [ngClass]="{active: activeClasses[2]}">
                     <a (click)="navigateSubMenu('dishes')">
                         <i class="tim-icons icon-delivery-fast"></i>
@@ -31,6 +32,13 @@
                         <p>Tables</p>
                     </a>
                 </li>
+                <li [ngClass]="{active: activeClasses[1]}">
+                    <a (click)="navigateSubMenu('users')">
+                        <i class="tim-icons icon-single-02"></i>
+                        <p>Users Management</p>
+                    </a>
+                </li>
+
                 <li [ngClass]="{active: activeClasses[4]}">
                     <a (click)="navigateSubMenu('banners')">
                         <i class="tim-icons icon-puzzle-10"></i>
@@ -43,7 +51,6 @@
                         <p>Coupons</p>
                     </a>
                 </li>
-
 
             </ul>
         </div>

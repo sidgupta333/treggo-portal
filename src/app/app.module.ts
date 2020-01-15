@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ChartsModule } from 'ng2-charts';
+import {NgxPrintModule} from 'ngx-print';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -38,7 +39,8 @@ import { KitchenComponent } from './kitchen/kitchen.component';
     NgxPaginationModule,
     Ng2SearchPipeModule,
     Ng2OrderModule,
-    ChartsModule
+    ChartsModule,
+    NgxPrintModule
 
   ],
   providers: [

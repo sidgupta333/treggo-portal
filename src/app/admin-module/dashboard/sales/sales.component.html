@@ -1,0 +1,233 @@
+<div class="row">
+    <div class="col-lg-8"></div>
+    <div class="col-lg-4">
+        <span [ngClass]="{'active': dayActive}" (click)="changeChart('Days')" class="chart-btn active">
+            Day
+        </span>
+        <span [ngClass]="{'active': monthActive}" (click)="changeChart('Months')" class="chart-btn">
+            Month
+        </span>
+        <span [ngClass]="{'active': yearActive}" (click)="changeChart('Years')" class="chart-btn">
+            Year
+        </span>
+    </div>
+</div>
+<br>
+<br>
+<div class="row">
+    <div>
+        <div style="width: 75vw;">
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType">
+            </canvas>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+
+
+<div class="row">
+    <div class="col-3">
+        <input style="margin-top:25px" class="form-control customSearch" type="text" placeholder="Search Record" name="search" [(ngModel)]="searchRecord">
+
+    </div>
+    <div class="col-9">
+        <form [formGroup]="filterForm" (ngSubmit)="addBanner()">
+            <div class="flex-horizontal">
+                <div class="form-group" style="width: 150px; margin-right: 20px;">
+                    <label for="deviceName">Start Date</label>
+                    <my-date-picker name="startDate" [options]="myDatePickerOptions" formControlName="startDate">
+                    </my-date-picker>
+                </div>
+                <div class="form-group" style="width: 150px; margin-right: 20px;">
+                    <label for="deviceName">End Date</label>
+                    <my-date-picker name="endDate" [options]="myDatePickerOptions" formControlName="endDate">
+                    </my-date-picker>
+                </div>
+                <button [disabled]="!filterForm.valid" type="button" (click)="filterOrders()" class="btn btn-primary btn-round animation-on-hover" style="margin-top: 15px;">Filter</button>
+            </div>
+        </form>
+
+
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-12">
+        <br>
+
+        <div class="card ">
+            <div class="card-header">
+                <h4 class="card-title"> PREVIOUS ORDERS</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive ps">
+                    <table class="table tablesorter ">
+                        <thead class=" text-primary">
+                            <tr>
+                                <th class="text-center">
+                                    Customer
+                                </th>
+                                <th class="text-center">
+                                    Order Date
+                                </th>
+                                <th class="text-center">
+                                    Order Amount
+                                </th>
+                                <th class="text-center">
+                                    Print Bill
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of orders | filter: searchRecord | paginate: {itemsPerPage: 10, currentPage: p}; let i = index">
+
+                                <td class="text-center">
+                                    {{item.customerName}}
+                                </td>
+
+                                <td class="text-center">
+                                    {{item.order_date}}
+                                </td>
+
+                                <td class="text-center">
+                                    {{item.total_amount}}
+                                </td>
+
+                                <td class="text-center">
+                                    <a (click)="generateBill(item)" data-toggle="modal" data-target="#billModal" data-backdrop="static" data-keyboard="false" style="border-bottom: 1px solid rgb(117, 179, 221); color: rgb(117, 179, 221);cursor: pointer;">
+                                        Click Here</a>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    <span *ngIf="orders.length == 0" style="margin-left: 45%;"> NO ITEMS TO DISPLAY</span>
+                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                    </div>
+                    <div class="ps__rail-y" style="top: 0px; right: 0px;">
+                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+                    </div>
+                    <br><br>
+                    <div class="row flex-pagination">
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="billModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="margin-top: -180px;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">BILL REPORT</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div id="print-bill" *ngIf="report.loaded" class="modal-body report-text">
+                <div class="report-layout">
+                    <p style="text-align: center; font-size: 24px; text-decoration: underline; font-weight: bolder;">
+                        KANHA RESTAURANT
+                    </p>
+                    <br>
+                    <div style="margin:1px" class="row">
+                        <div class="col">Customer: <b> {{report.name}} </b></div>
+                        <div class="col text-right">Phone: <b> {{report.phone}}</b></div>
+                    </div>
+                    <div style="margin:1px" class="row">
+                        <div class="col">
+                            Order Date: <b>{{report.created_on}}</b>
+                        </div>
+                        <br><br>
+
+                    </div>
+                    <div class="row">
+                        <div class="col report-text">
+
+                            <span style="margin:1px; margin-left: 20px; border-bottom: 1px solid black; font-weight: bolder;">ORDERED ITEMS:</span>
+                            <br><br>
+
+                            <div class="report-text">
+                                <table border="1" style="width: 96%; margin-left: 2%; margin-right: 2%;">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                S No
+                                            </th>
+                                            <th class="text-center">
+                                                Dish Name
+                                            </th>
+                                            <th class="text-center">
+                                                Quantity
+                                            </th>
+                                            <th class="text-center">
+                                                Base Price
+                                            </th>
+                                            <th class="text-center">
+                                                Aggregate Price
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of report.items | paginate: {itemsPerPage: 5, currentPage: p}; let i = index">
+
+                                            <td class="text-center">
+                                                {{ i + 1 }}
+                                            </td>
+
+                                            <td class="text-center">
+                                                {{ item.dish }}
+                                            </td>
+
+                                            <td class="text-center">
+                                                {{ item.quantity }}
+                                            </td>
+
+                                            <td class="text-center">
+                                                ₹ {{ item.base_price }}
+                                            </td>
+
+                                            <td class="text-center">
+                                                ₹ {{ item.base_price * item.quantity }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col report-text ">
+                            <h4 style="color: black; text-align: right;margin-right: 20px;"> GRAND TOTAL: <b> ₹ {{report.total_amount}}    </b></h4>
+
+                        </div>
+                    </div>
+
+                    <p style="color: black; width: 96%; margin-left: 2%; margin-right: 2%; font-size: smaller;">
+                        This price is included of all the taxes and deduction of price by any promotion code applied at the time of order.
+                    </p>
+                    <br><br><br><br>
+                    <div class="flex-horizontal">
+                        <h5 style="color: black;"> <img src="../../../../assets/img/smile.png" width="20px" height="20px"> THANK YOU FOR YOUR VISIT <img src="../../../../assets/img/smile.png" width="20px" height="20px"> </h5>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" [useExistingCss]="true" printSectionId="print-bill" ngxPrint class="btn btn-primary">PRINT</button> &nbsp;
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+
+            </div>
+        </div>
+    </div>
+</div>

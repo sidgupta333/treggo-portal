@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilsService } from 'src/app/services/utils.service';
 import { Router } from '@angular/router';
+import { RestService } from 'src/app/services/rest.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,9 +13,12 @@ export class DashboardComponent implements OnInit {
   activeClasses: any = [];
   loggedInTime: any = new Date().toLocaleTimeString();
   constructor(private utils: UtilsService,
-    private router: Router) { }
+    private router: Router,
+    private rest: RestService) { }
 
   ngOnInit() {
+
+    this.loadChartData();
 
     //Default selected settings
     for (let i = 1; i < 8; i++) {
@@ -28,6 +32,15 @@ export class DashboardComponent implements OnInit {
       this.navigateSubMenu('overview');
     }
 
+    window.setInterval(() => {
+      this.loadChartData();
+    }, 45000);
+  }
+
+  loadChartData() {
+    this.rest.getChartsData().subscribe((res: any) => {
+      this.utils.setChartData(res);
+    });
   }
 
 
@@ -71,6 +84,13 @@ export class DashboardComponent implements OnInit {
       this.defaultClasses();
       this.activeClasses[5] = true;
       this.router.navigate(['dashboard', 'coupons']);
+    }
+
+    else if (subMenu == 'sales') {
+      sessionStorage.setItem('submenu', 'sales');
+      this.defaultClasses();
+      this.activeClasses[6] = true;
+      this.router.navigate(['dashboard', 'sales']);
     }
   }
 

@@ -8,8 +8,8 @@ import { ThrowStmt } from '@angular/compiler';
 })
 export class RestService {
 
-  private SERVER: string = "http://treggo-api.herokuapp.com";
-  // private SERVER: string = "http://localhost:8080";
+  // private SERVER: string = "http://treggo-api.herokuapp.com";
+  private SERVER: string = "http://localhost:8080";
 
   LOGIN: string = "/users/login";
   ALL_USERS: string = "/users/getAll";
@@ -36,6 +36,10 @@ export class RestService {
   GET_DRILLDOWN = "/subOrders/drillDown";
   UPDATE_SUB_ORDER = "/subOrders/updateStatus";
   UPDATE_ORDER = "/orders/updateStatus";
+  CHARTS = "/orders/chart";
+  LATEST_ORDERS = "/orders/latest";
+  FILTER_ORDERS = "/orders/ordersByDate";
+  GENERATE_BILL = "/orders/bill/";
 
 
   constructor(private http: HttpClient) { }
@@ -153,7 +157,7 @@ export class RestService {
 
   public deleteCoupon(id: any) {
     let url = this.SERVER.concat(this.DELETE_COUPON, id);
-     return this.http.delete(url);
+    return this.http.delete(url);
   }
 
   public getDrilldown() {
@@ -170,4 +174,25 @@ export class RestService {
     let url = this.SERVER.concat(this.UPDATE_ORDER);
     return this.http.post(url, dto);
   }
+
+  public getChartsData() {
+    let url = this.SERVER.concat(this.CHARTS);
+    return this.http.get(url);
+  }
+
+  public getLatestData() {
+    let url = this.SERVER.concat(this.LATEST_ORDERS);
+    return this.http.get(url);
+  }
+
+  public filterOrders(dto: any) {
+    let url = this.SERVER.concat(this.FILTER_ORDERS);
+    return this.http.post(url, dto);
+  }
+
+  public generateBill(order_id: any) {
+    let url = this.SERVER.concat(this.GENERATE_BILL, order_id);
+    return this.http.get(url);
+  }
+
 }

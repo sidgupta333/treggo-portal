@@ -11,7 +11,7 @@ export class LoaderInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         console.log("URL -->   ", req.url);
 
-        if (req.url.indexOf("/subOrders/drillDown") == -1) {
+        if (req.url.indexOf("/subOrders/drillDown") == -1 && req.url.indexOf("/orders/chart") == -1) {
             this.loaderService.show();
         }
         return next.handle(req).pipe(

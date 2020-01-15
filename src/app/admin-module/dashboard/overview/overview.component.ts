@@ -10,26 +10,7 @@ import Swal from 'sweetalert2';
 export class OverviewComponent implements OnInit {
 
 
-  //  CHart configurations:
-  public barChartOptions = {
-    scaleShowVerticalLines: false,
-    responsive: true,
-    aspectRatio: 3,
-    borderColor: "#bae755"
-  };
-
-
-  public barChartLabels = ['2019-12-10', '2019-12-11', '2019-12-12', '2019-12-13', '2019-12-14', '2019-12-15', '2019-12-16'];
-  public barChartType = 'line';
-  public barChartLegend = true;
-  public barChartData = [
-    {data: [1164, 0, 0, 0, 0, 1332, 0], label: 'Sales per Day', 
-    borderColor: "#3C95D1",
-    backgroundColor: "rgba(13, 93, 146, 0.4)",
-    pointBackgroundColor: "#3C95D1"}
-  ];
-
-
+  
   ordersList: any = [];
   searchRecord: any;
   p: any;

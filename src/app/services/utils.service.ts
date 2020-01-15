@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class UtilsService {
 
   loggedData: any;
+  chartData: any;
 
   constructor() { }
 
@@ -37,5 +38,13 @@ export class UtilsService {
     else {
       return false;
     }
+  }
+
+  public setChartData(chart) {
+    this.chartData = chart;
+  }
+
+  public getChartData() {
+    return this.chartData;
   }
 }

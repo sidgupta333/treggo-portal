@@ -11,12 +11,14 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
 import { OrderModule } from 'ngx-order-pipe';
 import { MyDatePickerModule } from 'mydatepicker';
 import { ChartsModule } from 'ng2-charts';
+import {NgxPrintModule} from 'ngx-print';
 
 
 import { DishesComponent } from './dashboard/dishes/dishes.component';
 import { TablesComponent } from './dashboard/tables/tables.component';
 import { BannersComponent } from './dashboard/banners/banners.component';
 import { CouponsComponent } from './dashboard/coupons/coupons.component';
+import { SalesComponent } from './dashboard/sales/sales.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent, children: [
@@ -26,13 +28,14 @@ const routes: Routes = [
     {path: 'tables', component: TablesComponent},
     {path: 'banners', component: BannersComponent},
     {path: 'coupons', component: CouponsComponent},
+    {path: 'sales', component: SalesComponent},
     {path: '', redirectTo: 'overview', pathMatch: 'full'}
   ]},
   
 ]
 
 @NgModule({
-  declarations: [DashboardComponent, UsersComponent, OverviewComponent, DishesComponent, TablesComponent, BannersComponent, CouponsComponent],
+  declarations: [DashboardComponent, UsersComponent, OverviewComponent, DishesComponent, TablesComponent, BannersComponent, CouponsComponent, SalesComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -43,7 +46,8 @@ const routes: Routes = [
     OrderModule,
     RouterModule.forChild(routes),
     MyDatePickerModule,
-    ChartsModule
+    ChartsModule,
+    NgxPrintModule
   ]
 })
 export class AdminModuleModule { }
