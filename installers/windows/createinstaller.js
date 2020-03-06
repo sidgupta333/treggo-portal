@@ -14,12 +14,13 @@ function getInstallerConfig() {
     const outPath = path.join(rootPath, 'release-builds')
 
     return Promise.resolve({
-        appDirectory: path.join(outPath, 'Electron-tutorial-app-win32-ia32/'),
-        authors: 'Christian Engvall',
+        appDirectory: path.join(outPath, 'treggo-portal-win32-x64/'),
+        authors: 'Siddhant Gupta',
         noMsi: true,
         outputDirectory: path.join(outPath, 'windows-installer'),
-        exe: 'electron-tutorial-app.exe',
-        setupExe: 'ElectronTutorialAppInstaller.exe',
-        setupIcon: path.join(rootPath, 'assets', 'icons', 'win', 'icon.ico')
+        exe: 'treggo-portal.exe',
+        setupExe: 'TreggoPortalInstaller.exe',
+        description: 'An online technical restaurant portal',
+        setupIcon: path.join(rootPath, 'build', 'icon.ico')
     })
 }

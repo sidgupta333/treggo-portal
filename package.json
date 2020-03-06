@@ -1,7 +1,8 @@
 {
     "name": "treggo-portal",
     "productName": "Treggo Portal",
-    "version": "0.0.0",
+    "version": "0.1.0",
+    "description": "An online technical restaurant portal",
     "main": "main.js",
     "scripts": {
         "ng": "ng",
@@ -13,7 +14,7 @@
         "electron-tsc": "tsc main.ts && ng build --base-href ./ && electron .",
         "electron": "ng build --base-href ./ && electron .",
         "electron-build": "ng build --prod && npm run electron .",
-        "package-win": "electron-packager . treggo-portal --overwrite --asar --platform=win32 --arch=ia32 --icon=assets/icons/icon.ico --prune --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Treggo Portal\""
+        "package-win": "electron-packager . treggo-portal --overwrite --asar --platform=win32 --arch=x64 --icon=build/icon.ico --prune --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Treggo Portal\""
     },
     "private": true,
     "dependencies": {
@@ -27,7 +28,6 @@
         "@angular/router": "~8.2.9",
         "angular4-datepicker": "^1.0.1",
         "chart.js": "^2.9.3",
-        "electron-packager": "^14.2.1",
         "mydatepicker": "^2.6.6",
         "ng2-charts": "^2.3.0",
         "ng2-order-pipe": "^0.1.5",
@@ -52,6 +52,8 @@
         "@types/node": "~8.9.4",
         "codelyzer": "^5.0.0",
         "electron": "^8.0.3",
+        "electron-packager": "^13.1.1",
+        "electron-winstaller": "^4.0.0",
         "jasmine-core": "~3.4.0",
         "jasmine-spec-reporter": "~4.2.1",
         "karma": "~4.1.0",
