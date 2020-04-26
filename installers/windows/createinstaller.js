@@ -16,7 +16,7 @@ function getInstallerConfig() {
     return Promise.resolve({
         appDirectory: path.join(outPath, 'treggo-portal-win32-x64/'),
         authors: 'Siddhant Gupta',
-        noMsi: true,
+        noMsi: false,
         outputDirectory: path.join(outPath, 'windows-installer'),
         exe: 'treggo-portal.exe',
         setupExe: 'TreggoPortalInstaller.exe',

@@ -21,6 +21,7 @@ import { UtilsService } from './services/utils.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { KitchenComponent } from './kitchen/kitchen.component';
+import { TenantInterceptor } from './interceptors/tenant.interceptor';
 
 
 @NgModule({
@@ -47,9 +48,8 @@ import { KitchenComponent } from './kitchen/kitchen.component';
   LoaderService,
   RestService,
   UtilsService,
-  {
-    provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true
-  }],
+  {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true},
+  {provide: HTTP_INTERCEPTORS, useClass: TenantInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -14,7 +14,8 @@
         "electron-tsc": "tsc main.ts && ng build --base-href ./ && electron .",
         "electron": "ng build --base-href ./ && electron .",
         "electron-build": "ng build --prod && npm run electron .",
-        "package-win": "electron-packager . treggo-portal --overwrite --asar --platform=win32 --arch=x64 --icon=build/icon.ico --prune --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Treggo Portal\""
+        "package-win": "electron-packager . treggo-portal --overwrite --asar --platform=win32 --arch=x64 --icon=build/icon.ico --prune --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Treggo Portal\"",
+        "create-installer-win": "node installers/windows/createinstaller.js"
     },
     "private": true,
     "dependencies": {

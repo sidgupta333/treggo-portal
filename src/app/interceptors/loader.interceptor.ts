@@ -9,8 +9,7 @@ export class LoaderInterceptor implements HttpInterceptor {
     constructor(public loaderService: LoaderService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log("URL -->   ", req.url);
-
+     
         if (req.url.indexOf("/subOrders/drillDown") == -1 && req.url.indexOf("/orders/chart") == -1) {
             this.loaderService.show();
         }

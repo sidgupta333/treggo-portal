@@ -10,7 +10,11 @@
 
         <form [formGroup]="loginForm" (ngSubmit)="login()">
             <div class="form-container">
-                <br><br>
+                <br>
+                <div class="col">
+                    <input type="text" formControlName="tenantCode" class="form-control" placeholder="Tenant Code">
+                </div>
+                <br>
                 <div class="col">
                     <input type="text" formControlName="username" class="form-control" placeholder="Username">
                 </div>

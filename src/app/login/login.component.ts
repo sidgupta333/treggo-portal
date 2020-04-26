@@ -25,7 +25,9 @@ loginForm: FormGroup;
 
   ngOnInit() {
 
+    sessionStorage.setItem('tenant', null);
     this.loginForm = this.formBuilder.group({
+      tenantCode: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
       username: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(5)])]
     })
@@ -36,6 +38,7 @@ loginForm: FormGroup;
 
     //Enter credentials and check user is valid or not:
     let dto = {
+      tenant: this.loginForm.value.tenantCode,
       username: this.loginForm.value.username,
       password: this.loginForm.value.password
     }
@@ -46,6 +49,7 @@ loginForm: FormGroup;
         this.utils.setLoggedStatus(true);
         sessionStorage.setItem('username', res.username);
         sessionStorage.setItem('name', res.fullName);
+        sessionStorage.setItem('tenant', dto.tenant);
 
         // Set data to shared service
         this.utils.setLoggedData(res);

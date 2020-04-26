@@ -38,9 +38,9 @@
 }
 
 .form-container {
-    margin-top: 40px;
+    margin-top: 10px;
     border-radius: 20px;
     width: 360px;
-    height: 180px;
+    height: 200px;
     background-color: rgb(11, 33, 49);
 }

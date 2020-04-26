@@ -1,8 +1,15 @@
 const { app, BrowserWindow, screen } = require("electron");
 const path = require("path");
 const url = require("url");
+const setupEvents = require('./installers/setupEvents')
+
 
 let win;
+
+if (setupEvents.handleSquirrelEvent()) {
+    // squirrel event handled and app will exit in 1000ms, so don't do anything else
+    return;
+}
 
 function createWindow() {
 

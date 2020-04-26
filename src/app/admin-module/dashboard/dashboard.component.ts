@@ -11,12 +11,15 @@ import { RestService } from 'src/app/services/rest.service';
 export class DashboardComponent implements OnInit {
 
   activeClasses: any = [];
+  tenant: string;
   loggedInTime: any = new Date().toLocaleTimeString();
   constructor(private utils: UtilsService,
     private router: Router,
     private rest: RestService) { }
 
   ngOnInit() {
+
+    this.tenant = sessionStorage.getItem('tenant');
 
     this.loadChartData();
 
@@ -108,6 +111,7 @@ export class DashboardComponent implements OnInit {
     sessionStorage.removeItem('submenu');
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('name');
+    sessionStorage.setItem('tenant', null);
     this.router.navigate(['']);
 
   }
