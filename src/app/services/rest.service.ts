@@ -136,7 +136,8 @@ export class RestService {
   }
 
   public getImageUrl(id: any): string {
-    let url: string = this.SERVER.concat(this.VIEW_IMAGE, id);
+    const tenant = sessionStorage.getItem('tenant');
+    let url: string = this.SERVER.concat(this.VIEW_IMAGE,tenant, '/', id);
     return url;
   }
 

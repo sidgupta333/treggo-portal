@@ -120,7 +120,7 @@ export class SalesComponent implements OnInit {
 
         if (type == data.type) {
           this.barChartLabels = data.labels;
-          this.barChartData[0].label = data.type
+          this.barChartData[0].label = 'Rupees';
           this.barChartData[0].data = data.data;
         }
       });

@@ -275,6 +275,7 @@ export class DishesComponent implements OnInit {
     else {
       this.fileError = true;
     }
+	event.target.value = ''
 
   }
 
@@ -299,6 +300,7 @@ export class DishesComponent implements OnInit {
     else {
       this.fileError = true;
     }
+	event.target.value = ''
 
   }
 
