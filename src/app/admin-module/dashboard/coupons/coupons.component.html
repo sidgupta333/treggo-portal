@@ -75,7 +75,7 @@
                 <h3 style="font-weight: lighter; margin-top: 25px;"> CREATE NEW COUPON </h3>
             </div>
             <br>
-            <form class="form-style" [formGroup]="addForm" (ngSubmit)="addCoupon()">
+            <form class="form-style" [formGroup]="addForm" (ngSubmit)="saveCoupon()">
                 <div class="form-group">
                     <label style="color: white;" for="fullName">Coupon Name</label>
                     <input id="fullName" type="text" maxlength="50" formControlName="couponName" class="form-control " placeholder="Enter Coupon Name">
