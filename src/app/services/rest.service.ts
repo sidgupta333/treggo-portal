@@ -8,7 +8,7 @@ import { ThrowStmt } from '@angular/compiler';
 })
 export class RestService {
 
-  private SERVER: string = "http://treggo-api.herokuapp.com";
+  private SERVER: string = "https://treggo-api.herokuapp.com";
   // private SERVER: string = "http://localhost:8080";
 
   LOGIN: string = "/users/login";
