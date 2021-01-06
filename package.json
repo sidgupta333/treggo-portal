@@ -6,7 +6,7 @@
     "main": "main.js",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve",
+        "start": "node server.js",
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",
@@ -15,9 +15,15 @@
         "electron": "ng build --base-href ./ && electron .",
         "electron-build": "ng build --prod && npm run electron .",
         "package-win": "electron-packager . treggo-portal --overwrite --asar --platform=win32 --arch=x64 --icon=build/icon.ico --prune --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Treggo Portal\"",
-        "create-installer-win": "node installers/windows/createinstaller.js"
+        "create-installer-win": "node installers/windows/createinstaller.js",
+        "heroku-postbuild": "ng build --prod",
+        "postinstall": "ng build --prod"
     },
     "private": true,
+    "engines": {
+        "node": "10.15.3",
+        "npm": "6.4.1"
+    },
     "dependencies": {
         "@angular/animations": "~8.2.9",
         "@angular/common": "~8.2.9",
@@ -29,6 +35,8 @@
         "@angular/router": "~8.2.9",
         "angular4-datepicker": "^1.0.1",
         "chart.js": "^2.9.3",
+        "express": "^4.17.1",
+        "typescript": "~3.5.3",
         "mydatepicker": "^2.6.6",
         "ng2-charts": "^2.3.0",
         "ng2-order-pipe": "^0.1.5",
@@ -55,6 +63,7 @@
         "electron": "^8.0.3",
         "electron-packager": "^13.1.1",
         "electron-winstaller": "^4.0.0",
+        "enhanced-resolve": "^3.3.0",
         "jasmine-core": "~3.4.0",
         "jasmine-spec-reporter": "~4.2.1",
         "karma": "~4.1.0",
@@ -64,7 +73,6 @@
         "karma-jasmine-html-reporter": "^1.4.0",
         "protractor": "~5.4.0",
         "ts-node": "~7.0.0",
-        "tslint": "~5.15.0",
-        "typescript": "~3.5.3"
+        "tslint": "~5.15.0"
     }
 }
