@@ -34,7 +34,7 @@
         "@angular/platform-browser-dynamic": "~8.2.9",
         "@angular/router": "~8.2.9",
         "angular4-datepicker": "^1.0.1",
-        "chart.js": "^2.9.3",
+        "chart.js": "^2.9.4",
         "express": "^4.17.1",
         "typescript": "~3.5.3",
         "mydatepicker": "^2.6.6",
