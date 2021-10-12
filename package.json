@@ -60,7 +60,7 @@
         "@types/jasminewd2": "~2.0.3",
         "@types/node": "~8.9.4",
         "codelyzer": "^5.0.0",
-        "electron": "^8.0.3",
+        "electron": "^11.5.0",
         "electron-packager": "^13.1.1",
         "electron-winstaller": "^4.0.0",
         "enhanced-resolve": "^3.3.0",
